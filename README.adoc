@@ -1,1 +1,69 @@
-= texture-memory-convolution =
+= CUDA Texture Memory Convolution
+
+This project demonstrates the implementation of a 2D convolution using CUDA on the GPU. The code compares the performance of two memory types—global memory and texture memory—by applying a Gaussian-like kernel to an input signal. The kernel is applied to a signal of varying sizes, and the performance is measured for each memory type.
+
+== Features
+
+- Implemented convolution using two different memory access methods:
+  - Global Memory: Direct access to data in GPU memory.
+  - Texture Memory: Uses CUDA's Texture Object API for optimized data access.
+- Benchmarking of convolution performance on both CPU and GPU.
+- Comparison of execution times and speedup achieved by using GPU versus CPU.
+
+== Requirements
+
+- NVIDIA GPU with CUDA support.
+- CUDA Toolkit installed.
+- A C++ compiler supporting C++11 or later.
+- The program requires the following CUDA headers:
+  - `<cuda_runtime.h>`
+  - `<iostream>`
+  - `<cmath>`
+  - `<cstdio>`
+  - `<chrono>`
+== Code Explanation
+
+The project defines two CUDA kernels for performing the convolution:
+
+- **`Conv_Glb` (Global memory kernel)**: This kernel directly accesses the global memory of the GPU to perform convolution operations. It iterates over a 2D neighborhood of each pixel and applies a Gaussian-like kernel.
+
+- **`Conv_Tex` (Texture memory kernel)**: This kernel uses the CUDA Texture Object API to access texture memory. Texture memory provides optimized access patterns, which can lead to faster performance compared to global memory for certain types of data access.
+
+### Key Variables and Parameters:
+
+- **`BLOCK_SIZE`**: The size of each block in the GPU grid. A value of `16` is used for this example.
+- **`PI`**: The value of Pi, used in the kernel calculations.
+- **`delta`**: Defines the size of the convolution window (half the size of the block).
+- **`W`, `H`**: Width and height of the input signal.
+- **`dS`**: The input signal data on the GPU.
+- **`dConv`**: The convolution result stored in GPU memory.
+- **`hS`, `hConv`**: Host memory for input signal and convolution result.
+- **`hdConv`, `hdConvText`**: Device memory for storing the results of convolution using global and texture memory.
+
+### Performance Comparison
+
+The program benchmarks the time taken to perform the convolution on:
+
+1. **CPU**: A single-threaded CPU implementation.
+2. **GPU (Global memory)**: Using global memory for data access.
+3. **GPU (Texture memory)**: Using texture memory for optimized data access.
+
+Execution times are measured for each method, and the speedup (GPU vs CPU) is displayed in the console.
+
+### Output
+
+Upon execution, the program prints the following performance metrics for each signal size:
+
+- CPU execution time (in milliseconds).
+- GPU execution time using global memory (in milliseconds).
+- GPU execution time using texture memory (in milliseconds).
+- Speedup factor (GPU vs CPU) for both global and texture memory methods.
+
+Example output:
+
+CPU time: 124.5 ms 
+GPU (Global memory) time: 35.2 ms 
+GPU (Texture memory) time: 28.7 ms 
+Speedup (Global): 3.54x 
+Speedup (Texture): 4.33x
+
