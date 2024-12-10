@@ -1,0 +1,8 @@
+.vs
+cuda-str.*
+x64
+._*
+CppProperties.json
+texture-memory-convolution.sln
+texture-memory-convolution.vcxproj
+texture-memory-convolution.vcxproj.user
