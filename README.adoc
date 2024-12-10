@@ -21,6 +21,7 @@ This project demonstrates the implementation of a 2D convolution using CUDA on t
   - `<cmath>`
   - `<cstdio>`
   - `<chrono>`
+
 == Code Explanation
 
 The project defines two CUDA kernels for performing the convolution:
