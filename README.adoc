@@ -61,10 +61,10 @@ Upon execution, the program prints the following performance metrics for each si
 - Speedup factor (GPU vs CPU) for both global and texture memory methods.
 
 Example output:
-
+----
 CPU time: 124.5 ms 
 GPU (Global memory) time: 35.2 ms 
 GPU (Texture memory) time: 28.7 ms 
 Speedup (Global): 3.54x 
 Speedup (Texture): 4.33x
-
+----
