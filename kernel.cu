@@ -42,7 +42,7 @@ __global__ void Conv_Tex(float* dConv, cudaTextureObject_t texObj, int W, int H,
 }
 
 int main() {
-    int ws[] = { 1024, 5120, 10240 }, hs[] = { 2048, 5120, 10240 };
+    int ws[] = { 2048, 5120, 10240 }, hs[] = { 2048, 5120, 10240 };
 
     for (int i = 0; i < 3; ++i) {
 
